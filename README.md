@@ -1,12 +1,10 @@
 # GateKeeper
 
 ## Purpose
-Project used to explore how you could store credentials using Pycrypto library
-
-## Fucntionality
-Use a key to hash and un-hash information.
+This is a passion project used to explore how someone could store random credentials using the pycrypto package. In addition, this project utilizes the argparse and csv packages.
 
 ## Installation
+You may need to install the following packages.
 ```bash
 pip3 install pycrypto
 ```
