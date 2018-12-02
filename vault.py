@@ -1,14 +1,12 @@
-"""
+""" 
     vault.py
-    Little secrets keeper that utilizes base64, csv, and crypto packages. Encrypt and Decrypt data using SHA256.
 """
 from Crypto.Cipher import AES
 import base64
 import csv
 
-
-'''get record from file'''
 def getRecord(key, a):
+    """ Get record from CSV file """
     with open("vault.csv") as csvfile:
         reader = csv.reader(csvfile)
 
@@ -18,8 +16,8 @@ def getRecord(key, a):
 
     return None
 
-'''get all records from file'''
 def getAllRecords():
+    """ Get all records from CSV file """
     acts = []
 
     with open("vault.csv") as csvfile:
@@ -29,23 +27,23 @@ def getAllRecords():
 
     return acts
 
-'''save record to file'''
 def saveRecord(act, usr, pwd):
+    """ Save record to CSV file """
     with open('vault.csv', 'a') as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
         writer.writerow([act, usr, pwd])
 
     return None
 
-""" encrypt data using the key """
 def encryptData(key, data):
+    """ Encrypt data using key """
     obj = AES.new(key, AES.MODE_CBC, 'This is an IV456')
     ciphertext = obj.encrypt(data)
 
     return base64.b64encode(ciphertext).decode('utf-8')
 
-""" decrypt data using the key """
 def decryptData(key, data):
+    """ Encrypt data using key """
     obj2 = AES.new(key, AES.MODE_CBC, 'This is an IV456')
     decipheredtext = obj2.decrypt(base64.b64decode(data)).decode('utf-8')
 
